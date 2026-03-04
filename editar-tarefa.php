@@ -44,7 +44,7 @@ if (isset($_POST['editar'])) {
     } catch (PDOException $e) {
         if ($e->getCode() == 23000) {
             echo "<script>
-                    alert('Erro: Não digita tarefa com nome duplicado.');
+                    alert('Erro: Tarefa com nome duplicado.');
                     window.history.back();
                   </script>";
             exit;
