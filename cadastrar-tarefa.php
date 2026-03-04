@@ -45,7 +45,7 @@ if (isset($_POST['cadastro'])) {
         // Tratamento específico para erros de duplicidade (chave única)
         if ($e->getCode() == 23000) {
             echo "<script>
-                    alert('Erro: Não digita tarefa com nome duplicado.');
+                    alert('Erro: Tarefa com nome duplicado.');
                     window.history.back();
                   </script>";
             exit;
