@@ -45,7 +45,7 @@ if (isset($_POST['cadastro'])) {
         // Tratamento específico para erros de duplicidade (chave única)
         if ($e->getCode() == 23000) {
             echo "<script>
-                    alert('Erro: já existe uma tarefa com esse nome.');
+                    alert('Erro: Não digita tarefa com nome duplicado.');
                     window.history.back();
                   </script>";
             exit;
@@ -80,7 +80,7 @@ if (isset($_POST['cadastro'])) {
 
         <div class="form_grupo">
             <label for="nome" class="form_label">Nome da Tarefa</label>
-            <input type="text" name="nome" id="nome" class="form_input" required>
+            <input type="text" name="nome" id="nome" class="form_input" required autofocus>
         </div>
 
         <div class="form_grupo">

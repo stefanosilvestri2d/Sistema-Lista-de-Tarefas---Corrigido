@@ -19,8 +19,8 @@ $totalCusto = $tarefaRepositorio->somarCustos() ?? 0;
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
   <title>Sistema Lista de Tarefas</title>
-  <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/modal.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -37,6 +37,7 @@ $totalCusto = $tarefaRepositorio->somarCustos() ?? 0;
           <th>Nome</th>
           <th>Custo</th>
           <th>Data Limite</th>
+          <th>Id</th>
           <th></th> <!-- Editar -->
           <th></th> <!-- Excluir -->
           <th></th> <!-- Setas -->
@@ -45,32 +46,24 @@ $totalCusto = $tarefaRepositorio->somarCustos() ?? 0;
       <tbody>
 <?php foreach($tarefas as $tarefa): 
     $custo = (float) $tarefa->getCusto();
-    // Destaca tarefas caras (>=1000) com uma classe CSS especial
     $classe = $custo >= 1000 ? 'tarefa-cara' : '';
 ?>
 <tr class="draggable-row <?= $classe ?>" draggable="true" data-id="<?= $tarefa->getId() ?>">
     <td><?= htmlspecialchars($tarefa->getNome()) ?></td>
     <td><?= $tarefa->getCustoFormatado() ?></td>
     <td><?= $tarefa->getDataLimiteFormatada() ?></td>
+    <td><?= $tarefa->getId() ?></td>
     <td>
-        <!-- Botão de editar com dados da tarefa armazenados em data-atributos para popular o modal -->
-        <button 
-            type="button" 
-            class="botao-editar-modal"
-            data-id="<?= $tarefa->getId() ?>"
-            data-nome="<?= htmlspecialchars($tarefa->getNome()) ?>"
-            data-custo="<?= htmlspecialchars($tarefa->getCusto()) ?>"
-            data-data="<?= htmlspecialchars($tarefa->getDataLimite()) ?>"
-        >
+        <a href="editar-tarefa.php?id=<?= $tarefa->getId() ?>" class="botao-editar-modal">
             Editar
-        </button>
+        </a>
     </td>
     <td>
-        <!-- Botão de excluir, abre modal de confirmação -->
+        <!-- Botão de excluir, mantém modal de confirmação -->
         <button type="button" class="botao-excluir" data-id="<?= $tarefa->getId() ?>" data-nome="<?= htmlspecialchars($tarefa->getNome()) ?>">Excluir</button>
     </td>
     <td>
-        <!-- Setas para mover tarefas para cima ou para baixo -->
+        <!-- Setas para mover tarefas -->
         <button type="button" class="seta-cima" data-id="<?= $tarefa->getId() ?>">↑</button>
         <button type="button" class="seta-baixo" data-id="<?= $tarefa->getId() ?>">↓</button>
     </td>
@@ -84,7 +77,7 @@ $totalCusto = $tarefaRepositorio->somarCustos() ?? 0;
           <td></td>
           <td></td>
           <td></td>
-          <td></td> <!-- Espaço para coluna das setas -->
+          <td></td>
         </tr>
       </tfoot>
     </table>
@@ -107,41 +100,10 @@ $totalCusto = $tarefaRepositorio->somarCustos() ?? 0;
   </div>
 </div>
 
-<script src="js/excluir.js"></script>
 
-<!-- Modal de edição -->
-<div id="modal-editar" class="modal" style="display:none;">
-  <div class="modal-conteudo">
-    <h3>Editar Tarefa</h3>
-    <form id="form-editar" action="editar-tarefa.php" method="post" onsubmit="return validarModalEditar()">
-      <input type="hidden" name="id" id="editar-id">
-      
-      <div class="form_grupo">
-        <label for="editar-nome">Nome da Tarefa</label>
-        <input type="text" name="nome" id="editar-nome" required>
-      </div>
-
-      <div class="form_grupo">
-        <label for="editar-custo">Custo (R$)</label>
-        <input type="number" name="custo" id="editar-custo" step="0.01" min="0" required>
-      </div>
-
-      <div class="form_grupo">
-        <label for="editar-data">Data Limite</label>
-        <input type="date" name="data_limite" id="editar-data" required>
-      </div>
-
-      <div style="display:flex; gap:1em; margin-top:1em;">
-        <button type="submit" name="editar" style="background-color:#2ecc71;">Salvar</button>
-        <button type="button" id="btn-fechar-editar" style="background-color:#3498db;">Cancelar</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<script src="js/editarTarefa.js"></script>
 <script src="js/arrastar.js"></script>
 <script src="js/setas.js"></script> 
+<script src="js/excluir.js"></script>
 
 </body>
 </html>

@@ -1,24 +1,31 @@
-/* Container principal */
+/* =======================
+   Container principal
+======================= */
 .container_form {
     width: 700px;
     margin: 40px auto;
     display: flex;
     flex-direction: column;
-    background: #1f1f1f; /* escuro para combinar com a tabela */
+    background: #1f1f1f;
     border-radius: 10px;
     padding: 2em;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Título */
+/* =======================
+   Título do formulário
+======================= */
 .container_form h1 {
     font-size: 30px;
-    color: #EBC181; /* mesmo tom do header da tabela */
+    color: #EBC181;
     margin-bottom: 30px;
     text-align: center;
 }
 
-/* Grupo de formulário */
+/* =======================
+   Grupo de formulário
+======================= */
 .form_grupo {
     width: 100%;
     margin-bottom: 20px;
@@ -52,17 +59,20 @@
     box-shadow: 0 0 5px rgba(235,193,129,0.5);
 }
 
-/* Botão salvar */
+/* =======================
+   Botão salvar
+======================= */
 .submit {
     width: 100%;
     text-align: center;
+    margin-top: 10px;
 }
 
 .submit_btn {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: #9B8357; /* mesmo tom do botão editar */
+    background-color: #9B8357; /* mesmo tom do cadastrar */
     color: #fff;
     font-size: 18px;
     font-weight: 600;
@@ -75,7 +85,9 @@
     filter: saturate(150%);
 }
 
-/* Link voltar */
+/* =======================
+   Link voltar
+======================= */
 .botao-voltar {
     display: inline-block;
     text-align: center;
