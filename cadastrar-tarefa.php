@@ -42,15 +42,6 @@ if (isset($_POST['cadastro'])) {
 
     } catch (PDOException $e) {
 
-        // Tratamento específico para erros de duplicidade (chave única)
-        if ($e->getCode() == 23000) {
-            echo "<script>
-                    alert('Erro: Tarefa com nome duplicado.');
-                    window.history.back();
-                  </script>";
-            exit;
-        }
-
         // Qualquer outro erro genérico
         echo "<script>
                 alert('Erro ao cadastrar tarefa.');
