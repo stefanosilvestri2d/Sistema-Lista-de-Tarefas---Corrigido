@@ -53,7 +53,6 @@ CREATE TABLE tarefas (
     data_limite DATE NOT NULL,
     ordem INT NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE (nome),
     UNIQUE (ordem)
 );
 
